@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+<h2>You Are Currently Standing At:</h2>
+<p>
+  <strong>Address:</strong>
+  <%= @location.my_location%>
+</p>
+<h2>The Closest Buses Are--</h2>
+
+
+<p>
+  <strong>City:</strong>
+  <%= @location.city %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @location.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @location.longitude %>
+</p>
+<script type="text/javascript">
+	$(document).ready(function(){
+		function initialize (){
+			var userCoords = new google.maps.LatLng(<%= @location.latitude %>, <%location.longitude %>);
+			var busCoords = new google.maps.LatLng["LATITUDE"] %>, <%= bus ["LONGITUDE"] %>;
+
+		var mapOptions = {
+			center: userCoords,
+			zoom: 14,
+			scrollwheel: false
+		}
+	 
+	 	var map = new google.maps.Map(document.getElementById('map-canvas<%= index %>'),
+	 	mapOptions);
+
+	 	var userMarker = new google.maps.Marker({
+	 	position: userCoords,
+	 	map: map,
+	 	animation: google.maps.Animation.Drop
+	 	});
+
+	 	var busMarker = new google.maps.Marker({
+	 	position: busCoords,
+	 	map: map,	
+	 	animation: google.maps.Animation.Drop
+	 	});
+		
+	 	var infoWindowBus = new google.maps.InfoWindow({
+	 		content: "Bus is here!"
+	 	}) 
+	 	google.maps.event.addListner(busMarker, 'click', function(){
+	 		infoWindowBus.open (map, busMarker);
+	 	};
+
+	 	var infoWindowUser = new google.maps.InfoWindow ({
+	 		content: contentStringUser
+	 	});
+
+		var infoWindowUser = new google.maps.InfoWindow({
+			content: contentStringUser
+		});
+
+		google.maps.event.addDomListener(window,'load',initialize);
+	]);
+
+</script>
+
+<div class="bus-map" id="map-canvas<%= index %>"></div>
+<% end %>
+<%end%> Link_to "Actually, I'm at ...", root_path %>
